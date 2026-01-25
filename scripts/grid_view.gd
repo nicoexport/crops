@@ -1,0 +1,118 @@
+@tool
+class_name GridView extends Node3D
+
+@export var cell_material_override: StandardMaterial3D
+
+@export var model: GameModel:
+	set(m):
+		_disconnect_model_signals()
+		model = m
+		_connect_model_signals()
+		_rebuild_from_model()
+
+
+var _connected: bool = false
+
+
+func _ready() -> void:
+	_connect_model_signals()
+	_rebuild_from_model()
+
+
+func setup_grid_sockets(new_width: int, new_height: int) -> void:
+	# Clear existing grid view
+	for n in get_children():
+		if n is CSGBox3D:
+			n.free()
+
+
+	var tree := get_tree()	
+	if tree == null:
+		return
+
+	var scene_owner := get_tree().edited_scene_root
+	# Fallback if not available for some reason
+	if scene_owner == null:
+		scene_owner = owner
+		
+	# Create new grid view based on model dimensions
+	for x in range(new_width):
+		for y in range(new_height):
+			var cell_view = CellView.new()
+			cell_view.x = x
+			cell_view.y = y
+			# Assuming a predefined mesh for grid cells
+			cell_view.position = Vector3(x * 2, 0, y * 2)
+			cell_view.use_collision = true	
+			cell_view.slot_interacted.connect(_on_slot_interacted)	
+			add_child(cell_view)	
+			if Engine.is_editor_hint() and scene_owner != null:
+				cell_view.owner = scene_owner
+
+	for x in range (new_width):
+		for y in range (new_height):
+			if model != null:
+				model.set_cell(x, y, randi_range(0, 1))  # Initialize cells to default value	
+
+
+func _connect_model_signals() -> void:
+	if _connected: 
+		return
+	
+	if model == null:
+		return
+
+	if not model.grid_resized.is_connected(_on_model_grid_resized):
+		model.grid_resized.connect(_on_model_grid_resized)
+
+	if not model.cell_changed.is_connected(_on_cell_changed):
+		model.cell_changed.connect(_on_cell_changed)
+
+	_connected = true
+
+
+func _disconnect_model_signals() -> void:
+	if model == null:
+		_connected = false
+		return
+
+	if model.grid_resized.is_connected(_on_model_grid_resized):
+		model.grid_resized.disconnect(_on_model_grid_resized)
+
+	if model.cell_changed.is_connected(_on_cell_changed):
+		model.cell_changed.disconnect(_on_cell_changed)
+
+	_connected = false
+
+
+func _rebuild_from_model() -> void:
+	if model == null:
+		return
+	setup_grid_sockets(model.width, model.height)
+
+
+func _on_model_grid_resized(new_width: int, new_height: int) -> void:
+	setup_grid_sockets(new_width, new_height)	
+
+
+func _on_cell_changed(x: int, y: int, value: int) -> void:
+	# Update the specific cell in the grid view based on model change
+	var index = y + x * model.height
+	var box = get_child(index) as CSGBox3D
+	if box != null:
+		# Update the cell appearance based on the value
+		# This is a placeholder; actual implementation may vary
+		if value == 0:
+			box.material = cell_material_override
+		else:
+			box.material = null	
+
+
+func _on_slot_interacted(x: int, y: int) -> void:
+	print("Slot interacted at:", x, y)
+	if model != null:
+		print("Slot interacted at:", x, y)
+		# Example interaction: toggle cell value
+		var current_value = model.cells.get(Vector2i(x, y), 0)
+		var new_value = 1 if current_value == 0 else 0
+		model.set_cell(x, y, new_value)
