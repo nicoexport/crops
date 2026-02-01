@@ -3,6 +3,8 @@ extends Node3D
 
 var highlight_box: CSGBox3D
 var interaction_intended: bool = false	
+var selected_interaction: BaseInteraction = null
+
 
 func _ready() -> void:
 	highlight_box = CSGBox3D.new()
@@ -13,12 +15,20 @@ func _ready() -> void:
 	add_child(highlight_box)
 	highlight_box.visible = false	
 
+	selected_interaction = InteractionPrintCoords.new()
+
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
 				interaction_intended = true
+
+	if event.is_action_pressed("2"):
+		selected_interaction = InteractionWater.new(1)
+
+	if event.is_action_pressed("1"):
+		selected_interaction = InteractionPrintCoords.new()
 
 
 func _physics_process(_delta: float) -> void:	
@@ -54,7 +64,7 @@ func shoot_ray_from_mouse():
 		if interaction_intended:
 			if result.collider is CellView:
 				var cell_view: CellView = result.collider
-				cell_view.interact(InteractionWater.new(1))
+				cell_view.interact(selected_interaction)
 				
 	else:
 		highlight_box.visible = false
