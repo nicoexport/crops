@@ -80,6 +80,9 @@ func _connect_model_signals() -> void:
 	if not model.cell_changed.is_connected(_on_cell_changed):
 		model.cell_changed.connect(_on_cell_changed)
 
+	if not model.irrigation_changed.is_connected(_on_irrigation_changed):
+		model.irrigation_changed.connect(_on_irrigation_changed)
+
 	_connected = true
 
 
@@ -118,6 +121,10 @@ func _on_cell_changed(x: int, y: int, value: int) -> void:
 			box.material = cell_material_override
 		else:
 			box.material = null	
+
+
+func _on_irrigation_changed(x: int, y: int, level: int):
+	print("irrigation changed at ", str(x), " : ", str(y), " to level ", str(level))
 
 
 func _on_slot_interacted(x: int, y: int, interaction: BaseInteraction) -> void:

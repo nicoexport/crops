@@ -54,7 +54,7 @@ func shoot_ray_from_mouse():
 		if interaction_intended:
 			if result.collider is CellView:
 				var cell_view: CellView = result.collider
-				cell_view.interact(InteractionChangeValue.new())
+				cell_view.interact(InteractionWater.new(1))
 				
 	else:
 		highlight_box.visible = false

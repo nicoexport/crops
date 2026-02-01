@@ -3,8 +3,8 @@ class_name GameModel extends Resource
 
 signal grid_resized(new_width: int, new_height: int)	
 signal cell_changed(x: int, y: int, value)
-
 signal irrigation_changed(x: int, y: int, level: int)	
+
 
 @export var width: int = 8:
 	set(v):
