@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://du2q0yar5bnnl"]
+
+[ext_resource type="Shader" uid="uid://btba0dfs7vat5" path="res://shaders/cell.gdshader" id="1_cra31"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_cra31")
+shader_parameter/colors = PackedColorArray(0.83, 0.67894, 0.5063, 1, 0.75, 0.589, 0.40499997, 1, 0.61960787, 0.45490196, 0.26666668, 1, 0.47058824, 0.3137255, 0.13725491, 1, 0.2784314, 0.17254902, 0.047058824, 1)
+shader_parameter/irrigation_level = 0

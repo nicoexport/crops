@@ -1,7 +1,7 @@
 @tool
 class_name GridView extends Node3D
 
-@export var cell_material_override: StandardMaterial3D
+@export var cell_material: Material
 
 @export var spacing: Vector2:
 	set(v):
@@ -56,7 +56,8 @@ func setup_grid_sockets(new_width: int, new_height: int) -> void:
 			var position_2d = Vector2(x, y) * Vector2(1 + spacing.x, 1 + spacing.y) - centering_offset
 			cell_view.position = Vector3(position_2d.x, 0, position_2d.y)
 			cell_view.use_collision = true	
-			cell_view.slot_interacted.connect(_on_slot_interacted)	
+			cell_view.slot_interacted.connect(_on_slot_interacted)
+			cell_view.material = cell_material.duplicate(true)
 			add_child(cell_view)	
 			if Engine.is_editor_hint() and scene_owner != null:
 				cell_view.owner = scene_owner
@@ -117,14 +118,15 @@ func _on_cell_changed(x: int, y: int, value: int) -> void:
 	if box != null:
 		# Update the cell appearance based on the value
 		# This is a placeholder; actual implementation may vary
-		if value == 0:
-			box.material = cell_material_override
-		else:
-			box.material = null	
+		return
 
 
 func _on_irrigation_changed(x: int, y: int, level: int):
 	print("irrigation changed at ", str(x), " : ", str(y), " to level ", str(level))
+	var index = y + x * model.height
+	var box = get_child(index) as CSGBox3D
+	if box != null:
+		(box.material as ShaderMaterial).set_shader_parameter("irrigation_level", level)
 
 
 func _on_slot_interacted(x: int, y: int, interaction: BaseInteraction) -> void:
