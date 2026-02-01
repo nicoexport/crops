@@ -1,204 +1,384 @@
-[gd_scene load_steps=7 format=3 uid="uid://b558skwnk2fpj"]
+[gd_scene format=3 uid="uid://b558skwnk2fpj"]
 
 [ext_resource type="Script" uid="uid://crlpaysy4bf1" path="res://scripts/grid_view.gd" id="1_uwrxv"]
 [ext_resource type="Resource" uid="uid://dj5s8ewkfeaac" path="res://resources/game_model.tres" id="2_yqjtg"]
 [ext_resource type="Script" uid="uid://cswxft7tfn0c3" path="res://scripts/cell_view.gd" id="3_lbhrr"]
 [ext_resource type="Script" uid="uid://ys4vuvkjx0an" path="res://scripts/interactor.gd" id="3_lnu2h"]
 
-[sub_resource type="Environment" id="Environment_lbhrr"]
+[sub_resource type="Environment" id="Environment_iywne"]
+background_mode = 1
+background_color = Color(0.1376, 0.14954665, 0.16, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yqjtg"]
 albedo_color = Color(0, 0, 0, 1)
 
-[node name="Game" type="Node3D"]
+[node name="Game" type="Node3D" unique_id=1601715690]
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1281295874]
+environment = SubResource("Environment_iywne")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1612295325]
+transform = Transform3D(1, 0, 0, 0, 0.93622524, 0.3514005, 0, -0.3514005, 0.93622524, 0, 5.2355986, 0)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=449331607]
 transform = Transform3D(1, 0, 0, 0, 0.30158794, 0.95343834, 0, -0.95343834, 0.30158794, 2.8360748, 16.069145, 8.72625)
-environment = SubResource("Environment_lbhrr")
 
-[node name="GridView" type="Node3D" parent="."]
+[node name="GridView" type="Node3D" parent="." unique_id=639960668]
 script = ExtResource("1_uwrxv")
 cell_material_override = SubResource("StandardMaterial3D_yqjtg")
+spacing = Vector2(0.25, 0.25)
 model = ExtResource("2_yqjtg")
 
-[node name="@CSGBox3D@21015" type="CSGBox3D" parent="GridView"]
+[node name="@CSGBox3D@31109" type="CSGBox3D" parent="GridView" unique_id=222968471]
 use_collision = true
+material = SubResource("StandardMaterial3D_yqjtg")
 script = ExtResource("3_lbhrr")
 
-[node name="@CSGBox3D@21016" type="CSGBox3D" parent="GridView"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+[node name="@CSGBox3D@31110" type="CSGBox3D" parent="GridView" unique_id=2072275440]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.25)
 use_collision = true
 material = SubResource("StandardMaterial3D_yqjtg")
 script = ExtResource("3_lbhrr")
 y = 1
 
-[node name="@CSGBox3D@21017" type="CSGBox3D" parent="GridView"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+[node name="@CSGBox3D@31111" type="CSGBox3D" parent="GridView" unique_id=2076084159]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.5)
 use_collision = true
+material = SubResource("StandardMaterial3D_yqjtg")
 script = ExtResource("3_lbhrr")
 y = 2
 
-[node name="@CSGBox3D@21018" type="CSGBox3D" parent="GridView"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
+[node name="@CSGBox3D@31112" type="CSGBox3D" parent="GridView" unique_id=2099237503]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.75)
 use_collision = true
+material = SubResource("StandardMaterial3D_yqjtg")
 script = ExtResource("3_lbhrr")
 y = 3
 
-[node name="@CSGBox3D@21019" type="CSGBox3D" parent="GridView"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+[node name="@CSGBox3D@31113" type="CSGBox3D" parent="GridView" unique_id=443211089]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 use_collision = true
 script = ExtResource("3_lbhrr")
 y = 4
 
-[node name="@CSGBox3D@21020" type="CSGBox3D" parent="GridView"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+[node name="@CSGBox3D@31114" type="CSGBox3D" parent="GridView" unique_id=1640628861]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.25)
 use_collision = true
 material = SubResource("StandardMaterial3D_yqjtg")
 script = ExtResource("3_lbhrr")
+y = 5
+
+[node name="@CSGBox3D@31115" type="CSGBox3D" parent="GridView" unique_id=1927306113]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.5)
+use_collision = true
+script = ExtResource("3_lbhrr")
+y = 6
+
+[node name="@CSGBox3D@31116" type="CSGBox3D" parent="GridView" unique_id=1687128087]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, 0)
+use_collision = true
+script = ExtResource("3_lbhrr")
 x = 1
 
-[node name="@CSGBox3D@21021" type="CSGBox3D" parent="GridView"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
+[node name="@CSGBox3D@31117" type="CSGBox3D" parent="GridView" unique_id=971467107]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, 1.25)
 use_collision = true
 script = ExtResource("3_lbhrr")
 x = 1
 y = 1
 
-[node name="@CSGBox3D@21022" type="CSGBox3D" parent="GridView"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4)
+[node name="@CSGBox3D@31118" type="CSGBox3D" parent="GridView" unique_id=1451967396]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, 2.5)
 use_collision = true
+material = SubResource("StandardMaterial3D_yqjtg")
 script = ExtResource("3_lbhrr")
 x = 1
 y = 2
 
-[node name="@CSGBox3D@21023" type="CSGBox3D" parent="GridView"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 6)
+[node name="@CSGBox3D@31119" type="CSGBox3D" parent="GridView" unique_id=1970163373]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, 3.75)
 use_collision = true
 script = ExtResource("3_lbhrr")
 x = 1
 y = 3
 
-[node name="@CSGBox3D@21024" type="CSGBox3D" parent="GridView"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 8)
+[node name="@CSGBox3D@31120" type="CSGBox3D" parent="GridView" unique_id=866022860]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, 5)
 use_collision = true
-material = SubResource("StandardMaterial3D_yqjtg")
 script = ExtResource("3_lbhrr")
 x = 1
 y = 4
 
-[node name="@CSGBox3D@21025" type="CSGBox3D" parent="GridView"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+[node name="@CSGBox3D@31121" type="CSGBox3D" parent="GridView" unique_id=2114428144]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, 6.25)
 use_collision = true
+material = SubResource("StandardMaterial3D_yqjtg")
+script = ExtResource("3_lbhrr")
+x = 1
+y = 5
+
+[node name="@CSGBox3D@31122" type="CSGBox3D" parent="GridView" unique_id=1279711880]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, 7.5)
+use_collision = true
+script = ExtResource("3_lbhrr")
+x = 1
+y = 6
+
+[node name="@CSGBox3D@31123" type="CSGBox3D" parent="GridView" unique_id=1594296418]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 0)
+use_collision = true
+material = SubResource("StandardMaterial3D_yqjtg")
 script = ExtResource("3_lbhrr")
 x = 2
 
-[node name="@CSGBox3D@21026" type="CSGBox3D" parent="GridView"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 2)
+[node name="@CSGBox3D@31124" type="CSGBox3D" parent="GridView" unique_id=1821074825]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 1.25)
 use_collision = true
 material = SubResource("StandardMaterial3D_yqjtg")
 script = ExtResource("3_lbhrr")
 x = 2
 y = 1
 
-[node name="@CSGBox3D@21027" type="CSGBox3D" parent="GridView"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
+[node name="@CSGBox3D@31125" type="CSGBox3D" parent="GridView" unique_id=2142831400]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 2.5)
 use_collision = true
 script = ExtResource("3_lbhrr")
 x = 2
 y = 2
 
-[node name="@CSGBox3D@21028" type="CSGBox3D" parent="GridView"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 6)
+[node name="@CSGBox3D@31126" type="CSGBox3D" parent="GridView" unique_id=710625650]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 3.75)
 use_collision = true
 script = ExtResource("3_lbhrr")
 x = 2
 y = 3
 
-[node name="@CSGBox3D@21029" type="CSGBox3D" parent="GridView"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 8)
+[node name="@CSGBox3D@31127" type="CSGBox3D" parent="GridView" unique_id=949975445]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 5)
 use_collision = true
-material = SubResource("StandardMaterial3D_yqjtg")
 script = ExtResource("3_lbhrr")
 x = 2
 y = 4
 
-[node name="@CSGBox3D@21030" type="CSGBox3D" parent="GridView"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+[node name="@CSGBox3D@31128" type="CSGBox3D" parent="GridView" unique_id=971105262]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 6.25)
+use_collision = true
+script = ExtResource("3_lbhrr")
+x = 2
+y = 5
+
+[node name="@CSGBox3D@31129" type="CSGBox3D" parent="GridView" unique_id=321239267]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 7.5)
+use_collision = true
+material = SubResource("StandardMaterial3D_yqjtg")
+script = ExtResource("3_lbhrr")
+x = 2
+y = 6
+
+[node name="@CSGBox3D@31130" type="CSGBox3D" parent="GridView" unique_id=1421156382]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0, 0)
 use_collision = true
 script = ExtResource("3_lbhrr")
 x = 3
 
-[node name="@CSGBox3D@21031" type="CSGBox3D" parent="GridView"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 2)
+[node name="@CSGBox3D@31131" type="CSGBox3D" parent="GridView" unique_id=2000443526]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0, 1.25)
 use_collision = true
+material = SubResource("StandardMaterial3D_yqjtg")
 script = ExtResource("3_lbhrr")
 x = 3
 y = 1
 
-[node name="@CSGBox3D@21032" type="CSGBox3D" parent="GridView"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 4)
+[node name="@CSGBox3D@31132" type="CSGBox3D" parent="GridView" unique_id=945839345]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0, 2.5)
 use_collision = true
+material = SubResource("StandardMaterial3D_yqjtg")
 script = ExtResource("3_lbhrr")
 x = 3
 y = 2
 
-[node name="@CSGBox3D@21033" type="CSGBox3D" parent="GridView"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 6)
+[node name="@CSGBox3D@31133" type="CSGBox3D" parent="GridView" unique_id=1990173907]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0, 3.75)
 use_collision = true
 material = SubResource("StandardMaterial3D_yqjtg")
 script = ExtResource("3_lbhrr")
 x = 3
 y = 3
 
-[node name="@CSGBox3D@21034" type="CSGBox3D" parent="GridView"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 8)
+[node name="@CSGBox3D@31134" type="CSGBox3D" parent="GridView" unique_id=1351254518]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0, 5)
 use_collision = true
 script = ExtResource("3_lbhrr")
 x = 3
 y = 4
 
-[node name="@CSGBox3D@21035" type="CSGBox3D" parent="GridView"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+[node name="@CSGBox3D@31135" type="CSGBox3D" parent="GridView" unique_id=1995476945]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0, 6.25)
+use_collision = true
+material = SubResource("StandardMaterial3D_yqjtg")
+script = ExtResource("3_lbhrr")
+x = 3
+y = 5
+
+[node name="@CSGBox3D@31136" type="CSGBox3D" parent="GridView" unique_id=1035374168]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0, 7.5)
+use_collision = true
+script = ExtResource("3_lbhrr")
+x = 3
+y = 6
+
+[node name="@CSGBox3D@31137" type="CSGBox3D" parent="GridView" unique_id=1220384945]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
 use_collision = true
 material = SubResource("StandardMaterial3D_yqjtg")
 script = ExtResource("3_lbhrr")
 x = 4
 
-[node name="@CSGBox3D@21036" type="CSGBox3D" parent="GridView"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 2)
+[node name="@CSGBox3D@31138" type="CSGBox3D" parent="GridView" unique_id=2039403567]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 1.25)
 use_collision = true
 material = SubResource("StandardMaterial3D_yqjtg")
 script = ExtResource("3_lbhrr")
 x = 4
 y = 1
 
-[node name="@CSGBox3D@21037" type="CSGBox3D" parent="GridView"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 4)
+[node name="@CSGBox3D@31139" type="CSGBox3D" parent="GridView" unique_id=1999292944]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 2.5)
 use_collision = true
 script = ExtResource("3_lbhrr")
 x = 4
 y = 2
 
-[node name="@CSGBox3D@21038" type="CSGBox3D" parent="GridView"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 6)
+[node name="@CSGBox3D@31140" type="CSGBox3D" parent="GridView" unique_id=1608215876]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 3.75)
 use_collision = true
+material = SubResource("StandardMaterial3D_yqjtg")
 script = ExtResource("3_lbhrr")
 x = 4
 y = 3
 
-[node name="@CSGBox3D@21039" type="CSGBox3D" parent="GridView"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
+[node name="@CSGBox3D@31141" type="CSGBox3D" parent="GridView" unique_id=1461307732]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 5)
 use_collision = true
 material = SubResource("StandardMaterial3D_yqjtg")
 script = ExtResource("3_lbhrr")
 x = 4
 y = 4
 
-[node name="Interactor" type="Node3D" parent="."]
+[node name="@CSGBox3D@31142" type="CSGBox3D" parent="GridView" unique_id=1156562369]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 6.25)
+use_collision = true
+material = SubResource("StandardMaterial3D_yqjtg")
+script = ExtResource("3_lbhrr")
+x = 4
+y = 5
+
+[node name="@CSGBox3D@31143" type="CSGBox3D" parent="GridView" unique_id=1773936342]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 7.5)
+use_collision = true
+script = ExtResource("3_lbhrr")
+x = 4
+y = 6
+
+[node name="@CSGBox3D@31144" type="CSGBox3D" parent="GridView" unique_id=841462861]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.25, 0, 0)
+use_collision = true
+material = SubResource("StandardMaterial3D_yqjtg")
+script = ExtResource("3_lbhrr")
+x = 5
+
+[node name="@CSGBox3D@31145" type="CSGBox3D" parent="GridView" unique_id=975836701]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.25, 0, 1.25)
+use_collision = true
+script = ExtResource("3_lbhrr")
+x = 5
+y = 1
+
+[node name="@CSGBox3D@31146" type="CSGBox3D" parent="GridView" unique_id=135754325]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.25, 0, 2.5)
+use_collision = true
+script = ExtResource("3_lbhrr")
+x = 5
+y = 2
+
+[node name="@CSGBox3D@31147" type="CSGBox3D" parent="GridView" unique_id=93851979]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.25, 0, 3.75)
+use_collision = true
+script = ExtResource("3_lbhrr")
+x = 5
+y = 3
+
+[node name="@CSGBox3D@31148" type="CSGBox3D" parent="GridView" unique_id=736035858]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.25, 0, 5)
+use_collision = true
+material = SubResource("StandardMaterial3D_yqjtg")
+script = ExtResource("3_lbhrr")
+x = 5
+y = 4
+
+[node name="@CSGBox3D@31149" type="CSGBox3D" parent="GridView" unique_id=1531376864]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.25, 0, 6.25)
+use_collision = true
+material = SubResource("StandardMaterial3D_yqjtg")
+script = ExtResource("3_lbhrr")
+x = 5
+y = 5
+
+[node name="@CSGBox3D@31150" type="CSGBox3D" parent="GridView" unique_id=1267117616]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.25, 0, 7.5)
+use_collision = true
+script = ExtResource("3_lbhrr")
+x = 5
+y = 6
+
+[node name="@CSGBox3D@31151" type="CSGBox3D" parent="GridView" unique_id=600846849]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 0)
+use_collision = true
+script = ExtResource("3_lbhrr")
+x = 6
+
+[node name="@CSGBox3D@31152" type="CSGBox3D" parent="GridView" unique_id=1431833757]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 1.25)
+use_collision = true
+script = ExtResource("3_lbhrr")
+x = 6
+y = 1
+
+[node name="@CSGBox3D@31153" type="CSGBox3D" parent="GridView" unique_id=1895025991]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 2.5)
+use_collision = true
+script = ExtResource("3_lbhrr")
+x = 6
+y = 2
+
+[node name="@CSGBox3D@31154" type="CSGBox3D" parent="GridView" unique_id=1041015504]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 3.75)
+use_collision = true
+script = ExtResource("3_lbhrr")
+x = 6
+y = 3
+
+[node name="@CSGBox3D@31155" type="CSGBox3D" parent="GridView" unique_id=389850872]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 5)
+use_collision = true
+script = ExtResource("3_lbhrr")
+x = 6
+y = 4
+
+[node name="@CSGBox3D@31156" type="CSGBox3D" parent="GridView" unique_id=172187273]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 6.25)
+use_collision = true
+script = ExtResource("3_lbhrr")
+x = 6
+y = 5
+
+[node name="@CSGBox3D@31157" type="CSGBox3D" parent="GridView" unique_id=1453582644]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 7.5)
+use_collision = true
+material = SubResource("StandardMaterial3D_yqjtg")
+script = ExtResource("3_lbhrr")
+x = 6
+y = 6
+
+[node name="Interactor" type="Node3D" parent="." unique_id=1833000602]
 script = ExtResource("3_lnu2h")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-use_collision = true
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.93622524, 0.3514005, 0, -0.3514005, 0.93622524, 0, 5.2355986, 0)

@@ -1,5 +1,6 @@
 extends Node3D
 
+
 var highlight_box: CSGBox3D
 var interaction_intended: bool = false	
 
@@ -18,10 +19,9 @@ func _input(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
 				interaction_intended = true
-				print("Interaction intended")
 
 
-func _physics_process(delta: float) -> void:	
+func _physics_process(_delta: float) -> void:	
 	shoot_ray_from_mouse()
 
 
@@ -48,15 +48,13 @@ func shoot_ray_from_mouse():
 
 	if result:
 		highlight_box.visible = true
-		var position: Vector3 = result.collider.global_position
-		highlight_box.position = position
+		var pos: Vector3 = result.collider.global_position
+		highlight_box.position = pos
 		
 		if interaction_intended:
-			print("Interacted at position:", position, "with collider:", result.collider)
-
 			if result.collider is CellView:
 				var cell_view: CellView = result.collider
-				cell_view.interact()
+				cell_view.interact(InteractionChangeValue.new())
 				
 	else:
 		highlight_box.visible = false

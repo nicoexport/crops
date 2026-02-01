@@ -5,11 +5,11 @@ class_name CellView extends CSGBox3D
 @export var y: int
 
 
-signal slot_interacted(x: int, y: int)
+signal slot_interacted(x: int, y: int, interaction: BaseInteraction)
 
 
-func interact() -> void:
+func interact(interaction: BaseInteraction) -> void:
 	print("CellView at (", x, ",", y, ") interacted.")
-	slot_interacted.emit(x, y)	
+	slot_interacted.emit(x, y, interaction)	
 
 

@@ -1,9 +1,9 @@
-[gd_resource type="Resource" script_class="GameModel" load_steps=2 format=3 uid="uid://dj5s8ewkfeaac"]
+[gd_resource type="Resource" script_class="GameModel" format=3 uid="uid://dj5s8ewkfeaac"]
 
 [ext_resource type="Script" uid="uid://ijjhclmdxjvy" path="res://scripts/game_model.gd" id="1_bf4gr"]
 
 [resource]
 script = ExtResource("1_bf4gr")
-width = 5
-height = 5
+width = 7
+height = 7
 metadata/_custom_type_script = "uid://ijjhclmdxjvy"
