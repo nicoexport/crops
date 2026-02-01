@@ -43,6 +43,9 @@ func setup_grid_sockets(new_width: int, new_height: int) -> void:
 	if scene_owner == null:
 		scene_owner = owner
 		
+
+	var centering_offset: Vector2 = 0.5 * (Vector2.ONE + spacing) * Vector2(model.width - 1, model.height - 1)
+
 	# Create new grid view based on model dimensions
 	for x in range(new_width):
 		for y in range(new_height):
@@ -50,7 +53,8 @@ func setup_grid_sockets(new_width: int, new_height: int) -> void:
 			cell_view.x = x
 			cell_view.y = y
 			# Assuming a predefined mesh for grid cells
-			cell_view.position = Vector3(x * (1.0 + spacing.x), 0, y * (1.0 + spacing.y))
+			var position_2d = Vector2(x, y) * Vector2(1 + spacing.x, 1 + spacing.y) - centering_offset
+			cell_view.position = Vector3(position_2d.x, 0, position_2d.y)
 			cell_view.use_collision = true	
 			cell_view.slot_interacted.connect(_on_slot_interacted)	
 			add_child(cell_view)	
