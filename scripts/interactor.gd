@@ -1,9 +1,17 @@
-extends Node3D
+class_name Interactor extends Node3D
+
+
+signal selected_interaction_changed(interaction: BaseInteraction)
 
 
 var highlight_box: CSGBox3D
 var interaction_intended: bool = false	
-var selected_interaction: BaseInteraction = null
+var selected_interaction: BaseInteraction = null:
+	get:
+		return selected_interaction
+	set(v):
+		selected_interaction = v
+		selected_interaction_changed.emit(selected_interaction)
 
 
 func _ready() -> void:
@@ -32,10 +40,10 @@ func _input(event: InputEvent) -> void:
 
 
 func _physics_process(_delta: float) -> void:	
-	shoot_ray_from_mouse()
+	_shoot_ray_from_mouse()
 
 
-func shoot_ray_from_mouse():
+func _shoot_ray_from_mouse():
 	var camera := get_viewport().get_camera_3d()
 	if camera == null:
 		return

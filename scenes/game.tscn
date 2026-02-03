@@ -3,19 +3,15 @@
 [ext_resource type="Script" uid="uid://crlpaysy4bf1" path="res://scripts/grid_view.gd" id="1_uwrxv"]
 [ext_resource type="Material" uid="uid://du2q0yar5bnnl" path="res://materials/cell_mat.tres" id="2_iywne"]
 [ext_resource type="Resource" uid="uid://dj5s8ewkfeaac" path="res://resources/game_model.tres" id="2_yqjtg"]
-[ext_resource type="Script" uid="uid://cswxft7tfn0c3" path="res://scripts/cell_view.gd" id="3_lbhrr"]
 [ext_resource type="Script" uid="uid://ys4vuvkjx0an" path="res://scripts/interactor.gd" id="3_lnu2h"]
 [ext_resource type="Shader" uid="uid://btba0dfs7vat5" path="res://shaders/cell.gdshader" id="4_p57ef"]
+[ext_resource type="Script" uid="uid://cswxft7tfn0c3" path="res://scripts/cell_view.gd" id="5_u5sy4"]
+[ext_resource type="Script" uid="uid://drbshhemincvv" path="res://scripts/debug_interaction_bar.gd" id="6_u5sy4"]
+[ext_resource type="ButtonGroup" uid="uid://bg58e172xpqib" path="res://resources/ui/button_groups/button_group_debug_interaction_bar.tres" id="8_gee14"]
 
 [sub_resource type="Environment" id="Environment_iywne"]
 background_mode = 1
 background_color = Color(0.1376, 0.14954665, 0.16, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_u5sy4"]
-render_priority = 0
-shader = ExtResource("4_p57ef")
-shader_parameter/colors = PackedColorArray(0.83, 0.67894, 0.5063, 1, 0.75, 0.589, 0.40499997, 1, 0.61960787, 0.45490196, 0.26666668, 1, 0.47058824, 0.3137255, 0.13725491, 1, 0.2784314, 0.17254902, 0.047058824, 1)
-shader_parameter/irrigation_level = 0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gee14"]
 render_priority = 0
@@ -107,6 +103,12 @@ shader = ExtResource("4_p57ef")
 shader_parameter/colors = PackedColorArray(0.83, 0.67894, 0.5063, 1, 0.75, 0.589, 0.40499997, 1, 0.61960787, 0.45490196, 0.26666668, 1, 0.47058824, 0.3137255, 0.13725491, 1, 0.2784314, 0.17254902, 0.047058824, 1)
 shader_parameter/irrigation_level = 0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bt5mj"]
+render_priority = 0
+shader = ExtResource("4_p57ef")
+shader_parameter/colors = PackedColorArray(0.83, 0.67894, 0.5063, 1, 0.75, 0.589, 0.40499997, 1, 0.61960787, 0.45490196, 0.26666668, 1, 0.47058824, 0.3137255, 0.13725491, 1, 0.2784314, 0.17254902, 0.047058824, 1)
+shader_parameter/irrigation_level = 0
+
 [node name="Game" type="Node3D" unique_id=1601715690]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1281295874]
@@ -118,131 +120,177 @@ transform = Transform3D(1, 0, 0, 0, 0.93622524, 0.3514005, 0, -0.3514005, 0.9362
 [node name="Camera3D" type="Camera3D" parent="." unique_id=449331607]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 5.975, 0)
 
-[node name="GridView" type="Node3D" parent="." unique_id=639960668]
+[node name="GridView" type="Node3D" parent="." unique_id=639960668 node_paths=PackedStringArray("cell_parent_node")]
 script = ExtResource("1_uwrxv")
 cell_material = ExtResource("2_iywne")
 spacing = Vector2(0.125, 0.125)
 model = ExtResource("2_yqjtg")
+cell_parent_node = NodePath("Cells")
 
-[node name="@CSGBox3D@18908" type="CSGBox3D" parent="GridView" unique_id=1359679337]
+[node name="Cells" type="Node3D" parent="GridView" unique_id=1392116608]
+
+[node name="@CSGBox3D@19240" type="CSGBox3D" parent="GridView/Cells" unique_id=512359184]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6875, 0, -1.6875)
 use_collision = true
-material = SubResource("ShaderMaterial_u5sy4")
-script = ExtResource("3_lbhrr")
+material = SubResource("ShaderMaterial_gee14")
+script = ExtResource("5_u5sy4")
 
-[node name="@CSGBox3D@18909" type="CSGBox3D" parent="GridView" unique_id=847035850]
+[node name="@CSGBox3D@19241" type="CSGBox3D" parent="GridView/Cells" unique_id=162049802]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6875, 0, -0.5625)
 use_collision = true
-material = SubResource("ShaderMaterial_gee14")
-script = ExtResource("3_lbhrr")
+material = SubResource("ShaderMaterial_0tnpc")
+script = ExtResource("5_u5sy4")
 y = 1
 
-[node name="@CSGBox3D@18910" type="CSGBox3D" parent="GridView" unique_id=167197329]
+[node name="@CSGBox3D@19242" type="CSGBox3D" parent="GridView/Cells" unique_id=345037478]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6875, 0, 0.5625)
 use_collision = true
-material = SubResource("ShaderMaterial_0tnpc")
-script = ExtResource("3_lbhrr")
+material = SubResource("ShaderMaterial_vtaks")
+script = ExtResource("5_u5sy4")
 y = 2
 
-[node name="@CSGBox3D@18911" type="CSGBox3D" parent="GridView" unique_id=436658267]
+[node name="@CSGBox3D@19243" type="CSGBox3D" parent="GridView/Cells" unique_id=2130855870]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6875, 0, 1.6875)
 use_collision = true
-material = SubResource("ShaderMaterial_vtaks")
-script = ExtResource("3_lbhrr")
+material = SubResource("ShaderMaterial_kvpfn")
+script = ExtResource("5_u5sy4")
 y = 3
 
-[node name="@CSGBox3D@18912" type="CSGBox3D" parent="GridView" unique_id=781210615]
+[node name="@CSGBox3D@19244" type="CSGBox3D" parent="GridView/Cells" unique_id=540177492]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5625, 0, -1.6875)
 use_collision = true
-material = SubResource("ShaderMaterial_kvpfn")
-script = ExtResource("3_lbhrr")
+material = SubResource("ShaderMaterial_dinhu")
+script = ExtResource("5_u5sy4")
 x = 1
 
-[node name="@CSGBox3D@18913" type="CSGBox3D" parent="GridView" unique_id=1102845675]
+[node name="@CSGBox3D@19245" type="CSGBox3D" parent="GridView/Cells" unique_id=2133608012]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5625, 0, -0.5625)
 use_collision = true
-material = SubResource("ShaderMaterial_dinhu")
-script = ExtResource("3_lbhrr")
+material = SubResource("ShaderMaterial_kvuet")
+script = ExtResource("5_u5sy4")
 x = 1
 y = 1
 
-[node name="@CSGBox3D@18914" type="CSGBox3D" parent="GridView" unique_id=1788628483]
+[node name="@CSGBox3D@19246" type="CSGBox3D" parent="GridView/Cells" unique_id=1959901626]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5625, 0, 0.5625)
 use_collision = true
-material = SubResource("ShaderMaterial_kvuet")
-script = ExtResource("3_lbhrr")
+material = SubResource("ShaderMaterial_trtic")
+script = ExtResource("5_u5sy4")
 x = 1
 y = 2
 
-[node name="@CSGBox3D@18915" type="CSGBox3D" parent="GridView" unique_id=1325302936]
+[node name="@CSGBox3D@19247" type="CSGBox3D" parent="GridView/Cells" unique_id=878798669]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5625, 0, 1.6875)
 use_collision = true
-material = SubResource("ShaderMaterial_trtic")
-script = ExtResource("3_lbhrr")
+material = SubResource("ShaderMaterial_ir15t")
+script = ExtResource("5_u5sy4")
 x = 1
 y = 3
 
-[node name="@CSGBox3D@18916" type="CSGBox3D" parent="GridView" unique_id=1966191216]
+[node name="@CSGBox3D@19248" type="CSGBox3D" parent="GridView/Cells" unique_id=558719278]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5625, 0, -1.6875)
 use_collision = true
-material = SubResource("ShaderMaterial_ir15t")
-script = ExtResource("3_lbhrr")
+material = SubResource("ShaderMaterial_ca42v")
+script = ExtResource("5_u5sy4")
 x = 2
 
-[node name="@CSGBox3D@18917" type="CSGBox3D" parent="GridView" unique_id=4477663]
+[node name="@CSGBox3D@19249" type="CSGBox3D" parent="GridView/Cells" unique_id=363183761]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5625, 0, -0.5625)
 use_collision = true
-material = SubResource("ShaderMaterial_ca42v")
-script = ExtResource("3_lbhrr")
+material = SubResource("ShaderMaterial_rysoc")
+script = ExtResource("5_u5sy4")
 x = 2
 y = 1
 
-[node name="@CSGBox3D@18918" type="CSGBox3D" parent="GridView" unique_id=1268300261]
+[node name="@CSGBox3D@19250" type="CSGBox3D" parent="GridView/Cells" unique_id=982309574]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5625, 0, 0.5625)
 use_collision = true
-material = SubResource("ShaderMaterial_rysoc")
-script = ExtResource("3_lbhrr")
+material = SubResource("ShaderMaterial_ssvqc")
+script = ExtResource("5_u5sy4")
 x = 2
 y = 2
 
-[node name="@CSGBox3D@18919" type="CSGBox3D" parent="GridView" unique_id=549315597]
+[node name="@CSGBox3D@19251" type="CSGBox3D" parent="GridView/Cells" unique_id=138936788]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5625, 0, 1.6875)
 use_collision = true
-material = SubResource("ShaderMaterial_ssvqc")
-script = ExtResource("3_lbhrr")
+material = SubResource("ShaderMaterial_264po")
+script = ExtResource("5_u5sy4")
 x = 2
 y = 3
 
-[node name="@CSGBox3D@18920" type="CSGBox3D" parent="GridView" unique_id=1257220426]
+[node name="@CSGBox3D@19252" type="CSGBox3D" parent="GridView/Cells" unique_id=512093446]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6875, 0, -1.6875)
 use_collision = true
-material = SubResource("ShaderMaterial_264po")
-script = ExtResource("3_lbhrr")
+material = SubResource("ShaderMaterial_1kice")
+script = ExtResource("5_u5sy4")
 x = 3
 
-[node name="@CSGBox3D@18921" type="CSGBox3D" parent="GridView" unique_id=811272911]
+[node name="@CSGBox3D@19253" type="CSGBox3D" parent="GridView/Cells" unique_id=1637839380]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6875, 0, -0.5625)
 use_collision = true
-material = SubResource("ShaderMaterial_1kice")
-script = ExtResource("3_lbhrr")
+material = SubResource("ShaderMaterial_5newe")
+script = ExtResource("5_u5sy4")
 x = 3
 y = 1
 
-[node name="@CSGBox3D@18922" type="CSGBox3D" parent="GridView" unique_id=6243942]
+[node name="@CSGBox3D@19254" type="CSGBox3D" parent="GridView/Cells" unique_id=2069856349]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6875, 0, 0.5625)
 use_collision = true
-material = SubResource("ShaderMaterial_5newe")
-script = ExtResource("3_lbhrr")
+material = SubResource("ShaderMaterial_37s47")
+script = ExtResource("5_u5sy4")
 x = 3
 y = 2
 
-[node name="@CSGBox3D@18923" type="CSGBox3D" parent="GridView" unique_id=236994140]
+[node name="@CSGBox3D@19255" type="CSGBox3D" parent="GridView/Cells" unique_id=2147466615]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6875, 0, 1.6875)
 use_collision = true
-material = SubResource("ShaderMaterial_37s47")
-script = ExtResource("3_lbhrr")
+material = SubResource("ShaderMaterial_bt5mj")
+script = ExtResource("5_u5sy4")
 x = 3
 y = 3
 
-[node name="Interactor" type="Node3D" parent="." unique_id=1833000602]
+[node name="Interactor" type="Node3D" parent="GridView" unique_id=1833000602]
 script = ExtResource("3_lnu2h")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="GridView/Interactor" unique_id=804804999]
+
+[node name="Control" type="Control" parent="GridView/Interactor/CanvasLayer" unique_id=1783413094]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GridView/Interactor/CanvasLayer/Control" unique_id=914180857]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="DebugInteractionBar" type="HBoxContainer" parent="GridView/Interactor/CanvasLayer/Control/MarginContainer" unique_id=537845381 node_paths=PackedStringArray("interactor", "coords", "water")]
+layout_mode = 2
+size_flags_vertical = 0
+alignment = 1
+script = ExtResource("6_u5sy4")
+interactor = NodePath("../../../..")
+coords = NodePath("Coords")
+water = NodePath("Water")
+
+[node name="Coords" type="Button" parent="GridView/Interactor/CanvasLayer/Control/MarginContainer/DebugInteractionBar" unique_id=1734376731]
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("8_gee14")
+text = "coords"
+
+[node name="Water" type="Button" parent="GridView/Interactor/CanvasLayer/Control/MarginContainer/DebugInteractionBar" unique_id=1960548574]
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("8_gee14")
+text = "water"

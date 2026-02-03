@@ -1,19 +1,22 @@
 @tool
 class_name GridView extends Node3D
 
+@export_group("Visuals")
 @export var cell_material: Material
-
 @export var spacing: Vector2:
 	set(v):
 		spacing = v
 		_rebuild_from_model()
 
+@export_group("References")
 @export var model: GameModel:
 	set(m):
 		_disconnect_model_signals()
 		model = m
 		_connect_model_signals()
 		_rebuild_from_model()
+
+@export var cell_parent_node: Node3D
 
 
 var _connected: bool = false
@@ -29,7 +32,7 @@ func setup_grid_sockets(new_width: int, new_height: int) -> void:
 		return
 		
 	# Clear existing grid view
-	for n in get_children():
+	for n in cell_parent_node.get_children():
 		if n is CSGBox3D:
 			n.free()
 
@@ -58,7 +61,7 @@ func setup_grid_sockets(new_width: int, new_height: int) -> void:
 			cell_view.use_collision = true	
 			cell_view.slot_interacted.connect(_on_slot_interacted)
 			cell_view.material = cell_material.duplicate(true)
-			add_child(cell_view)	
+			cell_parent_node.add_child(cell_view)	
 			if Engine.is_editor_hint() and scene_owner != null:
 				cell_view.owner = scene_owner
 
@@ -114,7 +117,7 @@ func _on_model_grid_resized(new_width: int, new_height: int) -> void:
 func _on_cell_changed(x: int, y: int, value: int) -> void:
 	# Update the specific cell in the grid view based on model change
 	var index = y + x * model.height
-	var box = get_child(index) as CSGBox3D
+	var box = cell_parent_node.get_child(index) as CSGBox3D
 	if box != null:
 		# Update the cell appearance based on the value
 		# This is a placeholder; actual implementation may vary
@@ -124,7 +127,7 @@ func _on_cell_changed(x: int, y: int, value: int) -> void:
 func _on_irrigation_changed(x: int, y: int, level: int):
 	print("irrigation changed at ", str(x), " : ", str(y), " to level ", str(level))
 	var index = y + x * model.height
-	var box = get_child(index) as CSGBox3D
+	var box = cell_parent_node.get_child(index) as CSGBox3D
 	if box != null:
 		(box.material as ShaderMaterial).set_shader_parameter("irrigation_level", level)
 
