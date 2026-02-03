@@ -19,6 +19,7 @@ current age
 
 behavior:
 age one day per turn
+if mature harvest on default interaction
 
 
 ## sprinkler
