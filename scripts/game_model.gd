@@ -30,6 +30,7 @@ var cells := {}
 var irrigation_map := {}
 var cell_entity_map := {}
 
+
 func handle_grid_resize(new_width: int, new_height: int) -> void:
 	# Adjust internal data structures as needed
 	var new_cells := {}
@@ -58,12 +59,25 @@ func handle_grid_resize(new_width: int, new_height: int) -> void:
 	cell_entity_map = new_cell_entity_map
 
 
-func process_turn() -> void:
-	print("--- Processing turn ---")
+func start_turn() -> void:
+	print("--- starting turn ---")
 	for key in cell_entity_map.keys():
 		var entity: CellEntity = cell_entity_map[key]
 		if entity != null:
-			entity.on_turn()	
+			entity.on_turn_start(key.x, key.y, self)
+
+func end_turn() -> void:
+	print("--- ending turn ---")
+	# decrease water levels or other end-of-turn effects can be handled here
+	for key in irrigation_map.keys():
+		var current_level: int = irrigation_map[key]
+		if current_level > 0:
+			set_irrigation_level(key.x, key.y, current_level - 1)
+
+	for key in cell_entity_map.keys():
+		var entity: CellEntity = cell_entity_map[key]
+		if entity != null:
+			entity.on_turn_end(key.x, key.y, self)
 
 
 func set_cell(x: int, y: int, value: int) -> void:
@@ -85,6 +99,15 @@ func add_irrigation_level(x: int, y: int, delta: int) -> void:
 	irrigation_map[Vector2i(x, y)] = new_level
 	irrigation_changed.emit(x, y, new_level)	
 	print("Irrigation level at (", x, ",", y, ") changed to ", new_level)	
+
+
+func add_irrigation_to_area(center_x: int, center_y: int, delta: int) -> void:
+	for dx in range(-1, 2):
+		for dy in range(-1, 2):
+			var x = center_x + dx
+			var y = center_y + dy
+			if Vector2i(x, y) in irrigation_map:
+				add_irrigation_level(x, y, delta)
 
 
 func try_place_entity_on_map(x: int, y: int, entity: CellEntity) -> bool:
