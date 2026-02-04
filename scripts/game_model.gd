@@ -78,7 +78,7 @@ func add_irrigation_level(x: int, y: int, delta: int) -> void:
 	irrigation_changed.emit(x, y, new_level)		
 
 
-func try_place_entity_on_map(x: int, y: int, entity) -> bool:
+func try_place_entity_on_map(x: int, y: int, entity: CellEntity) -> bool:
 	var key = Vector2i(x, y)
 	if key in cell_entity_map and cell_entity_map[key] != null:
 		return false
