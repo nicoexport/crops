@@ -1,6 +1,8 @@
 @tool
 class_name GridView extends Node3D
 
+@export_tool_button("Rebuild Grid", "Callable") var rebuild_action = _rebuild_from_model
+
 @export_group("Visuals")
 @export var cell_material: Material
 @export var spacing: Vector2:
