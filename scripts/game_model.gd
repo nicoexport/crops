@@ -58,6 +58,14 @@ func handle_grid_resize(new_width: int, new_height: int) -> void:
 	cell_entity_map = new_cell_entity_map
 
 
+func process_turn() -> void:
+	print("--- Processing turn ---")
+	for key in cell_entity_map.keys():
+		var entity: CellEntity = cell_entity_map[key]
+		if entity != null:
+			entity.on_turn()	
+
+
 func set_cell(x: int, y: int, value: int) -> void:
 	cells[Vector2i(x, y)] = value
 	cell_changed.emit(x, y, value)	

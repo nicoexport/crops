@@ -32,12 +32,6 @@ func _input(event: InputEvent) -> void:
 			if event.pressed:
 				interaction_intended = true
 
-	if event.is_action_pressed("2"):
-		selected_interaction = InteractionWater.new(1)
-
-	if event.is_action_pressed("1"):
-		selected_interaction = InteractionPrintCoords.new()
-
 
 func _physics_process(_delta: float) -> void:	
 	_shoot_ray_from_mouse()

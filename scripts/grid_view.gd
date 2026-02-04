@@ -29,6 +29,14 @@ func _ready() -> void:
 	_rebuild_from_model()
 
 
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		if event.pressed:
+			if event.keycode == Key.KEY_T:
+				if model != null:
+					model.process_turn()			
+
+
 func setup_grid_sockets(new_width: int, new_height: int) -> void:
 	if !is_inside_tree():
 		return
