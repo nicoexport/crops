@@ -1,5 +1,6 @@
 extends Node 
 
+
 func create_plant_tomato() -> CellEntity:
 	var e = CellEntity.new()
 	e.type = CellEntity.Type.CROP
