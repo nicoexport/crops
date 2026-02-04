@@ -16,7 +16,7 @@ var selected_interaction: BaseInteraction = null:
 
 func _ready() -> void:
 	highlight_box = CSGBox3D.new()
-	highlight_box.size = Vector3(1.1, 0.1, 1.1)
+	highlight_box.size = Vector3(1.1, 0.05, 1.1)
 	var mat = StandardMaterial3D.new()
 	mat.albedo_color = Color(0, 1, 1, 0.5)
 	highlight_box.material = mat
@@ -67,7 +67,7 @@ func _shoot_ray_from_mouse():
 	if result:
 		highlight_box.visible = true
 		var pos: Vector3 = result.collider.global_position
-		highlight_box.position = pos + Vector3(0, 0.4, 0)
+		highlight_box.position = pos
 		
 		if interaction_intended:
 			if result.collider is CellView:
