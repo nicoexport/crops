@@ -131,7 +131,6 @@ func _on_cell_changed(x: int, y: int, value: int) -> void:
 
 
 func _on_irrigation_changed(x: int, y: int, level: int):
-	print("irrigation changed at ", str(x), " : ", str(y), " to level ", str(level))
 	var index = y + x * model.height
 	var box = cell_parent_node.get_child(index) as CSGBox3D
 	if box != null:
@@ -142,16 +141,14 @@ func _on_cell_entity_changed(x: int, y: int, entity: CellEntity) -> void:
 	var index = y + x * model.height
 	var box = cell_parent_node.get_child(index) as CSGBox3D
 	if box != null:
-		print("Cell entity changed at ", str(x), " : ", str(y), " to entity ", str(entity.name))
 		# remove old entity model if any
 		for child in box.get_children():
 			child.queue_free()
+
 		if entity != null and entity.model != null:
 			var entity_instance = MeshInstance3D.new()
 			entity_instance.mesh = entity.model
 			box.add_child(entity_instance)
-
-		return
 
 
 func _on_slot_interacted(x: int, y: int, interaction: BaseInteraction) -> void:

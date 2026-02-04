@@ -75,7 +75,8 @@ func add_irrigation_level(x: int, y: int, delta: int) -> void:
 		current_level = irrigation_map[Vector2i(x, y)]
 	var new_level = clamp(current_level + delta, 0, 5)
 	irrigation_map[Vector2i(x, y)] = new_level
-	irrigation_changed.emit(x, y, new_level)		
+	irrigation_changed.emit(x, y, new_level)	
+	print("Irrigation level at (", x, ",", y, ") changed to ", new_level)	
 
 
 func try_place_entity_on_map(x: int, y: int, entity: CellEntity) -> bool:
@@ -85,4 +86,15 @@ func try_place_entity_on_map(x: int, y: int, entity: CellEntity) -> bool:
 	
 	cell_entity_map[key] = entity
 	cell_entity_changed.emit(x, y, entity)
+	print("Placed entity ", entity.name, " at (", x, ",", y, ")")
 	return true
+
+
+func try_remove_entity_from_map(x: int, y: int) -> bool:
+	var key = Vector2i(x, y)
+	if key in cell_entity_map and cell_entity_map[key] != null:
+		cell_entity_map[key] = null
+		cell_entity_changed.emit(x, y, null)
+		print("Removed entity from (", x, ",", y, ")")
+		return true
+	return false	

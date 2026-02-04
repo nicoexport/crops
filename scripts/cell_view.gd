@@ -9,7 +9,6 @@ signal slot_interacted(x: int, y: int, interaction: BaseInteraction)
 
 
 func interact(interaction: BaseInteraction) -> void:
-	print("CellView at (", x, ",", y, ") interacted.")
 	slot_interacted.emit(x, y, interaction)	
 
 
