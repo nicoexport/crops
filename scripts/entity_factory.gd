@@ -14,4 +14,4 @@ func create_sprinkler() -> CellEntity:
 	e.type = CellEntity.Type.SPRINKLER
 	e.name = "Sprinkler"
 	e.model = TorusMesh.new()
-	return
+	return e
