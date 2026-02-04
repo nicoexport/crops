@@ -1,11 +1,14 @@
 @tool
 class_name GameModel extends Resource
 
+enum State {NULL, START_GAME, START_TURN, TURN, END_TURN}
+
 signal grid_resized(new_width: int, new_height: int)	
 signal cell_changed(x: int, y: int, value)
 signal irrigation_changed(x: int, y: int, level: int)
 signal cell_entity_changed(x: int, y:int, entity)	
 
+var state: State = State.NULL
 
 @export var width: int = 8:
 	set(v):
@@ -29,6 +32,21 @@ signal cell_entity_changed(x: int, y:int, entity)
 var cells := {}
 var irrigation_map := {}
 var cell_entity_map := {}
+
+
+func change_state(p_state: State):
+	exit_state(state)
+	state = p_state
+	enter_state(state)
+
+
+func enter_state(p_state: State):
+	pass
+
+
+func exit_state(p_state: State):
+	pass
+
 
 
 func handle_grid_resize(new_width: int, new_height: int) -> void:
