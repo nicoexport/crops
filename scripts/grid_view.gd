@@ -87,6 +87,9 @@ func _connect_model_signals() -> void:
 	if not model.irrigation_changed.is_connected(_on_irrigation_changed):
 		model.irrigation_changed.connect(_on_irrigation_changed)
 
+	if not model.cell_entity_changed.is_connected(_on_cell_entity_changed):
+		model.cell_entity_changed.connect(_on_cell_entity_changed)
+
 	_connected = true
 
 
@@ -130,6 +133,14 @@ func _on_irrigation_changed(x: int, y: int, level: int):
 	var box = cell_parent_node.get_child(index) as CSGBox3D
 	if box != null:
 		(box.material as ShaderMaterial).set_shader_parameter("irrigation_level", level)
+
+
+func _on_cell_entity_changed(x: int, y: int, entity: CellEntity) -> void:
+	var index = y + x * model.height
+	var box = cell_parent_node.get_child(index) as CSGBox3D
+	if box != null:
+		print("Cell entity changed at ", str(x), " : ", str(y), " to entity ", str(entity.name))
+		return
 
 
 func _on_slot_interacted(x: int, y: int, interaction: BaseInteraction) -> void:

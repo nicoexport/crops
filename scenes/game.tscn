@@ -129,41 +129,41 @@ cell_parent_node = NodePath("Cells")
 
 [node name="Cells" type="Node3D" parent="GridView" unique_id=1392116608]
 
-[node name="@CSGBox3D@18903" type="CSGBox3D" parent="GridView/Cells" unique_id=23861729]
+[node name="@CSGBox3D@18781" type="CSGBox3D" parent="GridView/Cells" unique_id=1372865216]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6875, 0, -1.6875)
 use_collision = true
 material = SubResource("ShaderMaterial_gee14")
 script = ExtResource("5_u5sy4")
 
-[node name="@CSGBox3D@18904" type="CSGBox3D" parent="GridView/Cells" unique_id=1910814635]
+[node name="@CSGBox3D@18782" type="CSGBox3D" parent="GridView/Cells" unique_id=1340696221]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6875, 0, -0.5625)
 use_collision = true
 material = SubResource("ShaderMaterial_0tnpc")
 script = ExtResource("5_u5sy4")
 y = 1
 
-[node name="@CSGBox3D@18905" type="CSGBox3D" parent="GridView/Cells" unique_id=635453555]
+[node name="@CSGBox3D@18783" type="CSGBox3D" parent="GridView/Cells" unique_id=405129566]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6875, 0, 0.5625)
 use_collision = true
 material = SubResource("ShaderMaterial_vtaks")
 script = ExtResource("5_u5sy4")
 y = 2
 
-[node name="@CSGBox3D@18906" type="CSGBox3D" parent="GridView/Cells" unique_id=339523675]
+[node name="@CSGBox3D@18784" type="CSGBox3D" parent="GridView/Cells" unique_id=20455638]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6875, 0, 1.6875)
 use_collision = true
 material = SubResource("ShaderMaterial_kvpfn")
 script = ExtResource("5_u5sy4")
 y = 3
 
-[node name="@CSGBox3D@18907" type="CSGBox3D" parent="GridView/Cells" unique_id=2037749110]
+[node name="@CSGBox3D@18785" type="CSGBox3D" parent="GridView/Cells" unique_id=1975196323]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5625, 0, -1.6875)
 use_collision = true
 material = SubResource("ShaderMaterial_dinhu")
 script = ExtResource("5_u5sy4")
 x = 1
 
-[node name="@CSGBox3D@18908" type="CSGBox3D" parent="GridView/Cells" unique_id=1282142752]
+[node name="@CSGBox3D@18786" type="CSGBox3D" parent="GridView/Cells" unique_id=1832828365]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5625, 0, -0.5625)
 use_collision = true
 material = SubResource("ShaderMaterial_kvuet")
@@ -171,7 +171,7 @@ script = ExtResource("5_u5sy4")
 x = 1
 y = 1
 
-[node name="@CSGBox3D@18909" type="CSGBox3D" parent="GridView/Cells" unique_id=152370329]
+[node name="@CSGBox3D@18787" type="CSGBox3D" parent="GridView/Cells" unique_id=1925733799]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5625, 0, 0.5625)
 use_collision = true
 material = SubResource("ShaderMaterial_trtic")
@@ -179,7 +179,7 @@ script = ExtResource("5_u5sy4")
 x = 1
 y = 2
 
-[node name="@CSGBox3D@18910" type="CSGBox3D" parent="GridView/Cells" unique_id=1898103634]
+[node name="@CSGBox3D@18788" type="CSGBox3D" parent="GridView/Cells" unique_id=730554282]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5625, 0, 1.6875)
 use_collision = true
 material = SubResource("ShaderMaterial_ir15t")
@@ -187,14 +187,14 @@ script = ExtResource("5_u5sy4")
 x = 1
 y = 3
 
-[node name="@CSGBox3D@18911" type="CSGBox3D" parent="GridView/Cells" unique_id=1935387991]
+[node name="@CSGBox3D@18789" type="CSGBox3D" parent="GridView/Cells" unique_id=1308361302]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5625, 0, -1.6875)
 use_collision = true
 material = SubResource("ShaderMaterial_ca42v")
 script = ExtResource("5_u5sy4")
 x = 2
 
-[node name="@CSGBox3D@18912" type="CSGBox3D" parent="GridView/Cells" unique_id=1420571754]
+[node name="@CSGBox3D@18790" type="CSGBox3D" parent="GridView/Cells" unique_id=923426547]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5625, 0, -0.5625)
 use_collision = true
 material = SubResource("ShaderMaterial_rysoc")
@@ -202,7 +202,7 @@ script = ExtResource("5_u5sy4")
 x = 2
 y = 1
 
-[node name="@CSGBox3D@18913" type="CSGBox3D" parent="GridView/Cells" unique_id=912768596]
+[node name="@CSGBox3D@18791" type="CSGBox3D" parent="GridView/Cells" unique_id=1278095976]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5625, 0, 0.5625)
 use_collision = true
 material = SubResource("ShaderMaterial_ssvqc")
@@ -210,7 +210,7 @@ script = ExtResource("5_u5sy4")
 x = 2
 y = 2
 
-[node name="@CSGBox3D@18914" type="CSGBox3D" parent="GridView/Cells" unique_id=1690087001]
+[node name="@CSGBox3D@18792" type="CSGBox3D" parent="GridView/Cells" unique_id=13226211]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5625, 0, 1.6875)
 use_collision = true
 material = SubResource("ShaderMaterial_264po")
@@ -218,14 +218,14 @@ script = ExtResource("5_u5sy4")
 x = 2
 y = 3
 
-[node name="@CSGBox3D@18915" type="CSGBox3D" parent="GridView/Cells" unique_id=396578707]
+[node name="@CSGBox3D@18793" type="CSGBox3D" parent="GridView/Cells" unique_id=1431842343]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6875, 0, -1.6875)
 use_collision = true
 material = SubResource("ShaderMaterial_1kice")
 script = ExtResource("5_u5sy4")
 x = 3
 
-[node name="@CSGBox3D@18916" type="CSGBox3D" parent="GridView/Cells" unique_id=1348082904]
+[node name="@CSGBox3D@18794" type="CSGBox3D" parent="GridView/Cells" unique_id=489737255]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6875, 0, -0.5625)
 use_collision = true
 material = SubResource("ShaderMaterial_5newe")
@@ -233,7 +233,7 @@ script = ExtResource("5_u5sy4")
 x = 3
 y = 1
 
-[node name="@CSGBox3D@18917" type="CSGBox3D" parent="GridView/Cells" unique_id=1251357672]
+[node name="@CSGBox3D@18795" type="CSGBox3D" parent="GridView/Cells" unique_id=1867289829]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6875, 0, 0.5625)
 use_collision = true
 material = SubResource("ShaderMaterial_37s47")
@@ -241,7 +241,7 @@ script = ExtResource("5_u5sy4")
 x = 3
 y = 2
 
-[node name="@CSGBox3D@18918" type="CSGBox3D" parent="GridView/Cells" unique_id=723417351]
+[node name="@CSGBox3D@18796" type="CSGBox3D" parent="GridView/Cells" unique_id=1345771186]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6875, 0, 1.6875)
 use_collision = true
 material = SubResource("ShaderMaterial_bt5mj")

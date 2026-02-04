@@ -19,6 +19,10 @@ run/main_scene="uid://b558skwnk2fpj"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+EntityFactory="*uid://dieeehycaojcd"
+
 [input]
 
 move_forward={
