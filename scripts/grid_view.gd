@@ -59,8 +59,9 @@ func setup_grid_sockets(new_width: int, new_height: int) -> void:
 			var position_2d = Vector2(x, y) * Vector2(1 + spacing.x, 1 + spacing.y) - centering_offset
 			cell_view.position = Vector3(position_2d.x, 0, position_2d.y)
 			cell_view.use_collision = true	
-			cell_view.slot_interacted.connect(_on_slot_interacted)
 			cell_view.material = cell_material.duplicate(true)
+			cell_view.size.y = 0.1
+			cell_view.slot_interacted.connect(_on_slot_interacted)
 			cell_parent_node.add_child(cell_view)	
 			if Engine.is_editor_hint() and scene_owner != null:
 				cell_view.owner = scene_owner
@@ -140,6 +141,14 @@ func _on_cell_entity_changed(x: int, y: int, entity: CellEntity) -> void:
 	var box = cell_parent_node.get_child(index) as CSGBox3D
 	if box != null:
 		print("Cell entity changed at ", str(x), " : ", str(y), " to entity ", str(entity.name))
+		# remove old entity model if any
+		for child in box.get_children():
+			child.queue_free()
+		if entity != null and entity.model != null:
+			var entity_instance = MeshInstance3D.new()
+			entity_instance.mesh = entity.model
+			box.add_child(entity_instance)
+
 		return
 
 
