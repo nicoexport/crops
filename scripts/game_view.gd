@@ -1,17 +1,17 @@
 @tool
 class_name GameView extends Node3D
 
+
 @export_group("Visuals")
 @export var cell_material: Material
+
 @export var spacing: Vector2:
 	set(v):
 		spacing = v
 		setup_cells(grid_width, grid_height)	
 
-@export var controller: GameController:
-	set(c):
-		controller = c
-
+@export_group("References")
+@export var controller: GameController
 @export var cell_parent_node: Node3D
 
 var grid_width: int = 0
@@ -68,7 +68,7 @@ func setup_cells(new_width: int, new_height: int) -> void:
 				cell_view.owner = scene_owner
 
 
-func on_irrigation_changed(x: int, y: int, level: int):
+func on_irrigation_changed(x: int, y: int, level: int) -> void:
 	var box = cell_views.get(Vector2i(x, y))
 	if box != null:
 		(box.material as ShaderMaterial).set_shader_parameter("irrigation_level", level)

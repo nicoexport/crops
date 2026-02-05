@@ -312,7 +312,6 @@ metadata/_custom_type_script = "uid://druby43buonxi"
 script = ExtResource("1_uwrxv")
 cell_material = ExtResource("2_iywne")
 spacing = Vector2(0.125, 0.125)
-model = ExtResource("2_yqjtg")
 controller = NodePath("..")
 cell_parent_node = NodePath("Cells")
 

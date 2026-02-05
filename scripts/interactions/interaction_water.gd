@@ -1,12 +1,11 @@
 class_name InteractionWater extends BaseInteraction
 
-
-var _amount
+var _amount: int
 
 
 func _init(amount: int) -> void:
-    _amount = amount
+	_amount = amount
 
 
-func perform(x: int, y: int, model: GameModel):
-    model.add_irrigation_level(x, y, _amount)
+func perform(x: int, y: int, controller: GameController) -> void:
+	controller.increase_irrigation(x, y, _amount)

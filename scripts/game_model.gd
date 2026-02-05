@@ -1,11 +1,7 @@
 @tool
 class_name GameModel extends Resource
 
-
 signal grid_resized(new_width: int, new_height: int)	
-signal cell_changed(x: int, y: int, value)
-signal irrigation_changed(x: int, y: int, level: int)
-signal cell_entity_changed(x: int, y:int, entity)	
 
 
 @export var width: int = 8:
@@ -16,6 +12,7 @@ signal cell_entity_changed(x: int, y:int, entity)
 			grid_resized.emit(width, height)	
 	get: 
 		return width
+
 
 @export var height: int = 8:
 	set(v):
@@ -68,54 +65,4 @@ func handle_grid_resize(new_width: int, new_height: int) -> void:
 
 	cells = new_cells
 	irrigation_map = new_irrigation_map	
-
-
-func set_cell(x: int, y: int, value: int) -> void:
-	cells[Vector2i(x, y)] = value
-	cell_changed.emit(x, y, value)	
-
-
-func set_irrigation_level(x: int, y: int, level: int) -> void:
-	level = clamp(level, 0, 5)	
-	irrigation_map[Vector2i(x, y)] = level
-	irrigation_changed.emit(x, y, level)
-
-
-func add_irrigation_level(x: int, y: int, delta: int) -> void:
-	var current_level: int = 0
-	if Vector2i(x, y) in irrigation_map:
-		current_level = irrigation_map[Vector2i(x, y)]
-	var new_level = clamp(current_level + delta, 0, 5)
-	irrigation_map[Vector2i(x, y)] = new_level
-	irrigation_changed.emit(x, y, new_level)	
-	print("Irrigation level at (", x, ",", y, ") changed to ", new_level)	
-
-
-func add_irrigation_to_area(center_x: int, center_y: int, delta: int) -> void:
-	for dx in range(-1, 2):
-		for dy in range(-1, 2):
-			var x = center_x + dx
-			var y = center_y + dy
-			if Vector2i(x, y) in irrigation_map:
-				add_irrigation_level(x, y, delta)
-
-
-func try_place_entity_on_map(x: int, y: int, entity: CellEntity) -> bool:
-	var key = Vector2i(x, y)
-	if key in cell_entity_map and cell_entity_map[key] != null:
-		return false
-	
-	cell_entity_map[key] = entity
-	cell_entity_changed.emit(x, y, entity)
-	print("Placed entity ", entity.name, " at (", x, ",", y, ")")
-	return true
-
-
-func try_remove_entity_from_map(x: int, y: int) -> bool:
-	var key = Vector2i(x, y)
-	if key in cell_entity_map and cell_entity_map[key] != null:
-		cell_entity_map[key] = null
-		cell_entity_changed.emit(x, y, null)
-		print("Removed entity from (", x, ",", y, ")")
-		return true
-	return false	
+	cell_entity_map = new_cell_entity_map
