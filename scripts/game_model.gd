@@ -1,15 +1,12 @@
 @tool
 class_name GameModel extends Resource
 
-enum State {NULL, START_GAME, START_TURN, TURN, END_TURN}
 
 signal grid_resized(new_width: int, new_height: int)	
 signal cell_changed(x: int, y: int, value)
 signal irrigation_changed(x: int, y: int, level: int)
 signal cell_entity_changed(x: int, y:int, entity)	
 
-var state: State = State.NULL
-var intend_end_turn: bool = false
 
 @export var width: int = 8:
 	set(v):
@@ -46,71 +43,6 @@ func reset_model() -> void:
 			cell_entity_map[Vector2i(x, y)] = null  # Initialize cell entities
 
 
-func process(delta: float) -> void:
-	process_state(state, delta)	
-
-
-func change_state(p_state: State):
-	exit_state(state)
-	state = p_state
-	enter_state(state)
-
-
-func enter_state(p_state: State):
-	match p_state:
-		State.START_GAME:
-			print("Entering START_GAME state")
-			# Initialize game state, reset variables, etc.
-			reset_model()
-			grid_resized.emit(width, height)  # Notify views to rebuild grid
-			change_state(State.START_TURN)  # Automatically transition to first turn
-		State.START_TURN:
-			print("Entering START_TURN state")
-			await start_turn()
-			change_state(State.TURN)
-		State.TURN:
-			print("Entering TURN state")
-			# Wait for player input or AI actions here
-			# For simplicity, we'll just wait for a short time and then end the turn
-
-		State.END_TURN:
-			print("Entering END_TURN state")
-			end_turn()
-			change_state(State.START_TURN)
-		_:
-			print("Entering NULL or unknown state")
-
-
-func process_state(p_state: State, delta: float):
-	match p_state:
-		State.TURN:
-			if intend_end_turn:
-				change_state(State.END_TURN)
-				intend_end_turn = false
-		_:
-			intend_end_turn = false
-			pass	
-
-
-func exit_state(p_state: State):
-	match p_state:
-		State.START_GAME:
-			print("Exiting START_GAME state")
-			# Clean up any temporary data if needed
-		State.START_TURN:
-			print("Exiting START_TURN state")
-			# Prepare for turn actions if needed
-		State.TURN:
-			print("Exiting TURN state")
-			# Finalize player actions if needed
-		State.END_TURN:
-			print("Exiting END_TURN state")
-			# Reset any end-of-turn effects if needed
-		_:
-			print("Exiting NULL or unknown state")
-
-
-
 func handle_grid_resize(new_width: int, new_height: int) -> void:
 	# Adjust internal data structures as needed
 	var new_cells := {}
@@ -136,30 +68,6 @@ func handle_grid_resize(new_width: int, new_height: int) -> void:
 
 	cells = new_cells
 	irrigation_map = new_irrigation_map	
-	cell_entity_map = new_cell_entity_map
-
-
-func start_turn() -> void:
-	print("--- starting turn ---")
-	for key in cell_entity_map.keys():
-		var entity: CellEntity = cell_entity_map[key]
-		if entity != null:
-			entity.on_turn_start(key.x, key.y, self)
-			await Timers.wait_for(0.1)  # Small delay to simulate time taken for each entity's action
-
-
-func end_turn() -> void:
-	print("--- ending turn ---")
-	# decrease water levels or other end-of-turn effects can be handled here
-	for key in irrigation_map.keys():
-		var current_level: int = irrigation_map[key]
-		if current_level > 0:
-			set_irrigation_level(key.x, key.y, current_level - 1)
-
-	for key in cell_entity_map.keys():
-		var entity: CellEntity = cell_entity_map[key]
-		if entity != null:
-			entity.on_turn_end(key.x, key.y, self)
 
 
 func set_cell(x: int, y: int, value: int) -> void:
