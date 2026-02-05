@@ -12,12 +12,13 @@ var mature_age: int
 var age: int = 0
 
 # behavior
-func on_turn_start(x: int, y: int, model: GameModel) -> void:
+func on_turn_start(x: int, y: int, game_model: GameModel) -> void:
 	if type == Type.SPRINKLER:
-		water(x, y, model)	
+		water(x, y, game_model)
+		return  # Simulate time taken to water
 
 
-func on_turn_end(x: int, y: int, model: GameModel) -> void:
+func on_turn_end(x: int, y: int, game_model: GameModel) -> void:
 	if type == Type.CROP:
 		grow()
 	
@@ -30,8 +31,8 @@ func grow():
 		age += 1
 		print("Crop has grown to age %d." % age)	
 
-func water(x: int, y: int, model: GameModel) -> void:
+func water(x: int, y: int, game_model: GameModel) -> void:
 	print("Sprinkler is watering adjacent cells.")
 	# Implementation for watering adjacent cells would go here
-	model.add_irrigation_to_area(x, y, 1)
+	game_model.add_irrigation_to_area(x, y, 1)
 		

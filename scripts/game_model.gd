@@ -83,6 +83,7 @@ func start_turn() -> void:
 		var entity: CellEntity = cell_entity_map[key]
 		if entity != null:
 			entity.on_turn_start(key.x, key.y, self)
+			await Timers.wait_for(0.1)  # Small delay to simulate time taken for each entity's action
 
 func end_turn() -> void:
 	print("--- ending turn ---")

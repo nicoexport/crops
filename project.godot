@@ -22,6 +22,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 EntityFactory="*uid://dieeehycaojcd"
+Timers="*uid://cvx0le7yur682"
 
 [input]
 
