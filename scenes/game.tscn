@@ -127,6 +127,36 @@ spacing = Vector2(0.125, 0.125)
 model = ExtResource("2_yqjtg")
 cell_parent_node = NodePath("Cells")
 
+[node name="HUD" type="CanvasLayer" parent="GridView" unique_id=45148785]
+
+[node name="Control" type="Control" parent="GridView/HUD" unique_id=1792561367]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GridView/HUD/Control" unique_id=53111874]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Button_EndTurn" type="Button" parent="GridView/HUD/Control/MarginContainer" unique_id=2054019664]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "END TURN"
+
 [node name="Cells" type="Node3D" parent="GridView" unique_id=1392116608]
 
 [node name="@CSGBox3D@18781" type="CSGBox3D" parent="GridView/Cells" unique_id=214122741]
@@ -277,6 +307,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="GridView/Interactor/CanvasLayer/Control" unique_id=914180857]
 layout_mode = 1
@@ -285,6 +316,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
@@ -333,3 +365,5 @@ layout_mode = 2
 toggle_mode = true
 button_group = ExtResource("8_gee14")
 text = "remove"
+
+[connection signal="pressed" from="GridView/HUD/Control/MarginContainer/Button_EndTurn" to="GridView" method="set_end_turn_intent"]

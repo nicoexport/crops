@@ -27,6 +27,7 @@ var _connected: bool = false
 func _ready() -> void:
 	_connect_model_signals()
 	_rebuild_from_model()
+	model.change_state(GameModel.State.START_GAME)
 
 
 func _input(event: InputEvent) -> void:
@@ -34,10 +35,21 @@ func _input(event: InputEvent) -> void:
 		if event.pressed:
 			if event.keycode == Key.KEY_S:
 				if model != null:
-					model.start_turn()			
+					model.change_state(GameModel.State.START_TURN)
 			if event.keycode == Key.KEY_E:
 				if model != null:
-					model.end_turn()	
+					model.change_state(GameModel.State.END_TURN)
+
+
+func _process(delta: float) -> void:
+	if model != null:
+		model.process(delta)	
+
+
+func set_end_turn_intent() -> void:
+	if model != null:
+		model.intend_end_turn = true
+
 
 func setup_grid_sockets(new_width: int, new_height: int) -> void:
 	if !is_inside_tree():
